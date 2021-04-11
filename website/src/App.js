@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {getHomeList, getMovieInfo} from './Tmdb';
 import MovieRow from './components/MovieRow';
 import FeaturedMovie from './components/FeaturedMovie';
-import Header from './components/Header'
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 import './App.css';
 
@@ -64,6 +65,8 @@ const App = () => {
           <MovieRow key={key} title={item.title} items={item.items}/>
         ))}
       </section>
+
+      <Footer className="footer"/>
     </div>
   );
 }
