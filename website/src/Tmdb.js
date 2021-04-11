@@ -11,11 +11,11 @@ const API_BASE = 'https://api.themoviedb.org/3';
 - documentários
 */
 
-const basicInfoFetch = async (endpoint) => {
-    const req = await fetch(`${API_BASE}${endpoint}`);
-    const json = await req.json();
-    return json;
-}
+    const basicInfoFetch = async (endpoint) => {
+        const req = await fetch(`${API_BASE}${endpoint}`);
+        const json = await req.json();
+        return json;
+    }
 
 
     const getHomeList = async () => {
@@ -60,7 +60,28 @@ const basicInfoFetch = async (endpoint) => {
                 title: 'Documentários',
                 items: await basicInfoFetch(`/discover/movie?with_genres=99&language=pt-BR&api_key=${API_KEY}`)
             },
-        ]
+        ];
     }
 
-export default getHomeList;
+    const getMovieInfo = async (movieId, type) => {
+
+        let info = {};
+
+        if(movieId) {
+            switch(type) {
+                case 'movie':
+                    info = await basicInfoFetch(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`);
+                break;
+                case 'tv':
+                    info = await basicInfoFetch(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`)
+                break;
+                default:
+                    info = null;
+                break;
+            }
+        }
+
+        return info;
+    }
+
+export {getHomeList , getMovieInfo};
