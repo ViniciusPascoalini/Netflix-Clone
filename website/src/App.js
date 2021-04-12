@@ -18,6 +18,7 @@ const App = () => {
     const loadAllData = async () =>{
 
       let list = await getHomeList();
+      console.log(list)
       setMovieList(list);
     
 
@@ -67,7 +68,16 @@ const App = () => {
       </section>
 
       <Footer className="footer"/>
+
+      {movieList.length <= 0 &&
+        <div className="loading">
+          <img src="https://ik.imagekit.io/pascoalini/Netflix_LoadTime_F24n2o95y.gif" alt="loading"></img>
+        </div>
+      }
+
     </div>
+
+
   );
 }
 
